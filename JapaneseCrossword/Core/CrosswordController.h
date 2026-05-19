@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include "../Entities/LevelData.h"
+#include "../Commands/MoveManager.h"
 
 class CrosswordController : public QObject {
     Q_OBJECT
@@ -12,6 +13,9 @@ public:
 
     void initializeLevel(const LevelData& data);
     void toggleCell(int x, int y);
+    void setCellState(int x, int y, CellState state);
+    void undo();
+
     CellState getCellState(int x, int y) const;
     int getWidth() const;
     int getHeight() const;
@@ -22,6 +26,7 @@ signals:
 
 private:
     LevelData m_levelData;
+    MoveManager m_moveManager;
 };
 
 #endif

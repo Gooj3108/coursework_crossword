@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QPushButton>
 #include "../Core/CrosswordController.h"
 #include "CrosswordWidget.h"
 
@@ -15,6 +16,7 @@ public:
 private:
     CrosswordController* m_controller;
     CrosswordWidget* m_crosswordWidget;
+    QPushButton* m_undoButton;
 };
 
 #endif

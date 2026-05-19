@@ -114,15 +114,15 @@
     <ClInclude Include="Storage\StatisticsManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="UI\CrosswordWidget.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="UI\MainWindow.h">
       <Filter>Header Files</Filter>
     </QtMoc>
     <QtMoc Include="Core\CrosswordController.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="UI\CrosswordWidget.h">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>

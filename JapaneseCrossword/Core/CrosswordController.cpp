@@ -1,4 +1,6 @@
 #include "CrosswordController.h"
+#include "../Commands/PaintCellCommand.h"
+#include <memory>
 
 CrosswordController::CrosswordController(QObject* parent)
     : QObject(parent) {
@@ -6,6 +8,7 @@ CrosswordController::CrosswordController(QObject* parent)
 
 void CrosswordController::initializeLevel(const LevelData& data) {
     m_levelData = data;
+    m_moveManager.clear();
     emit levelInitialized();
 }
 
@@ -15,19 +18,33 @@ void CrosswordController::toggleCell(int x, int y) {
     }
 
     int index = y * m_levelData.width + x;
-    CellState currentState = m_levelData.currentState[index];
+    CellState oldState = m_levelData.currentState[index];
+    CellState newState;
 
-    if (currentState == CellState::Empty) {
-        m_levelData.currentState[index] = CellState::Filled;
+    if (oldState == CellState::Empty) {
+        newState = CellState::Filled;
     }
-    else if (currentState == CellState::Filled) {
-        m_levelData.currentState[index] = CellState::Crossed;
+    else if (oldState == CellState::Filled) {
+        newState = CellState::Crossed;
     }
     else {
-        m_levelData.currentState[index] = CellState::Empty;
+        newState = CellState::Empty;
     }
 
+    auto command = std::make_unique<PaintCellCommand>(this, x, y, oldState, newState);
+    m_moveManager.executeCommand(std::move(command));
+}
+
+void CrosswordController::setCellState(int x, int y, CellState state) {
+    if (x < 0 || x >= m_levelData.width || y < 0 || y >= m_levelData.height) {
+        return;
+    }
+    m_levelData.currentState[y * m_levelData.width + x] = state;
     emit cellChanged(x, y);
+}
+
+void CrosswordController::undo() {
+    m_moveManager.undo();
 }
 
 CellState CrosswordController::getCellState(int x, int y) const {
