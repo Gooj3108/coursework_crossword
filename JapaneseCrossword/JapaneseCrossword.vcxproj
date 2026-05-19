@@ -15,8 +15,7 @@
     <Keyword>QtVS_v304</Keyword>
     <WindowsTargetPlatformVersion Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">10.0</WindowsTargetPlatformVersion>
     <WindowsTargetPlatformVersion Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">10.0</WindowsTargetPlatformVersion>
-    <QtMsBuild Condition="'$(QtMsBuild)'=='' OR !Exists('$(QtMsBuild)\qt.targets')"
-      >$(MSBuildProjectDirectory)\QtMsBuild</QtMsBuild>
+    <QtMsBuild Condition="'$(QtMsBuild)'=='' OR !Exists('$(QtMsBuild)\qt.targets')">$(MSBuildProjectDirectory)\QtMsBuild</QtMsBuild>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="Configuration">
@@ -46,11 +45,8 @@
     <QtModules>concurrent;core;gui;testlib;widgets</QtModules>
     <QtBuildConfig>release</QtBuildConfig>
   </PropertyGroup>
-  <Target Name="QtMsBuildNotFound"
-    BeforeTargets="CustomBuild;ClCompile"
-    Condition="!Exists('$(QtMsBuild)\qt.targets') or !Exists('$(QtMsBuild)\qt.props')">
-    <Message Importance="High"
-      Text="QtMsBuild: could not locate qt.targets, qt.props; project may not build correctly." />
+  <Target Name="QtMsBuildNotFound" BeforeTargets="CustomBuild;ClCompile" Condition="!Exists('$(QtMsBuild)\qt.targets') or !Exists('$(QtMsBuild)\qt.props')">
+    <Message Importance="High" Text="QtMsBuild: could not locate qt.targets, qt.props; project may not build correctly." />
   </Target>
   <ImportGroup Label="ExtensionSettings" />
   <ImportGroup Label="Shared" />
@@ -96,12 +92,40 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <QtRcc Include="JapaneseCrossword.qrc"/>
-    <QtUic Include="JapaneseCrossword.ui"/>
-    <QtMoc Include="JapaneseCrossword.h"/>
-    <ClCompile Include="JapaneseCrossword.cpp"/>
-    <ClCompile Include="main.cpp"/>
-
+    <ClCompile Include="Storage\SaveManager.cpp" />
+    <ClCompile Include="Storage\StatisticsManager.cpp" />
+    <ClCompile Include="UI\CrosswordWidget.cpp" />
+    <ClCompile Include="UI\MainWindow.cpp" />
+    <QtRcc Include="JapaneseCrossword.qrc" />
+    <QtUic Include="JapaneseCrossword.ui" />
+    <ClCompile Include="Commands\MoveManager.cpp" />
+    <ClCompile Include="Commands\PaintCellCommand.cpp" />
+    <ClCompile Include="Core\CrosswordController.cpp" />
+    <ClCompile Include="Core\GameTimer.cpp" />
+    <ClCompile Include="Core\HintSystem.cpp" />
+    <ClCompile Include="Core\RuleSystem.cpp" />
+    <ClCompile Include="LevelGeneration\LevelManager.cpp" />
+    <ClCompile Include="LevelGeneration\RandomGenerator.cpp" />
+    <ClCompile Include="LevelGeneration\Solver.cpp" />
+    <ClCompile Include="main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Commands\ICommand.h" />
+    <ClInclude Include="Commands\MoveManager.h" />
+    <ClInclude Include="Commands\PaintCellCommand.h" />
+    <QtMoc Include="Core\CrosswordController.h" />
+    <ClInclude Include="Core\GameTimer.h" />
+    <ClInclude Include="Core\HintSystem.h" />
+    <ClInclude Include="Core\RuleSystem.h" />
+    <ClInclude Include="Entities\LevelData.h" />
+    <ClInclude Include="LevelGeneration\ILevelGenerator.h" />
+    <ClInclude Include="LevelGeneration\LevelManager.h" />
+    <ClInclude Include="LevelGeneration\RandomGenerator.h" />
+    <ClInclude Include="LevelGeneration\Solver.h" />
+    <ClInclude Include="Storage\SaveManager.h" />
+    <ClInclude Include="Storage\StatisticsManager.h" />
+    <QtMoc Include="UI\CrosswordWidget.h" />
+    <QtMoc Include="UI\MainWindow.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">
