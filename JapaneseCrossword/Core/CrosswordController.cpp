@@ -61,3 +61,7 @@ int CrosswordController::getWidth() const {
 int CrosswordController::getHeight() const {
     return m_levelData.height;
 }
+
+const LevelData& CrosswordController::getLevelData() const {
+    return m_levelData;
+}

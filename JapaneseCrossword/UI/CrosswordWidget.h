@@ -17,6 +17,7 @@ protected:
 private:
     CrosswordController* m_controller;
     int m_cellSize;
+    int m_hintOffset;
 };
 
 #endif

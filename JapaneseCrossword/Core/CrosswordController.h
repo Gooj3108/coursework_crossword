@@ -19,6 +19,7 @@ public:
     CellState getCellState(int x, int y) const;
     int getWidth() const;
     int getHeight() const;
+    const LevelData& getLevelData() const;
 
 signals:
     void cellChanged(int x, int y);

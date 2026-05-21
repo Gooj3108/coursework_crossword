@@ -5,6 +5,7 @@
 #include <QPushButton>
 #include "../Core/CrosswordController.h"
 #include "CrosswordWidget.h"
+#include "../LevelGeneration/LevelManager.h"
 
 class MainWindow : public QMainWindow {
     Q_OBJECT
@@ -17,6 +18,8 @@ private:
     CrosswordController* m_controller;
     CrosswordWidget* m_crosswordWidget;
     QPushButton* m_undoButton;
+    QPushButton* m_newGameButton;
+    LevelManager m_levelManager;
 };
 
 #endif
