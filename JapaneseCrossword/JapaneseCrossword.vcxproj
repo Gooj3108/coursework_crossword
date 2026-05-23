@@ -114,7 +114,7 @@
     <ClInclude Include="Commands\MoveManager.h" />
     <ClInclude Include="Commands\PaintCellCommand.h" />
     <QtMoc Include="Core\CrosswordController.h" />
-    <ClInclude Include="Core\GameTimer.h" />
+    <QtMoc Include="Core\GameTimer.h" />
     <ClInclude Include="Core\HintSystem.h" />
     <ClInclude Include="Core\RuleSystem.h" />
     <ClInclude Include="Entities\LevelData.h" />

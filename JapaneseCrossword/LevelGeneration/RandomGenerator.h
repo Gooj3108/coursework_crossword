@@ -6,6 +6,9 @@
 class RandomGenerator : public ILevelGenerator {
 public:
     LevelData generate(int width, int height) override;
+
+private:
+    LevelData generateRaw(int width, int height);
 };
 
 #endif
