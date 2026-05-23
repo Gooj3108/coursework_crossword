@@ -84,9 +84,6 @@
     <ClInclude Include="Commands\PaintCellCommand.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Core\GameTimer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Core\HintSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -123,6 +120,9 @@
       <Filter>Header Files</Filter>
     </QtMoc>
     <QtMoc Include="UI\CrosswordWidget.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="Core\GameTimer.h">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>
